@@ -12,7 +12,7 @@ function solutionPart1() {
     green: number;
     blue: number;
   }
-  
+
   const game: Bag = {
     red: 0,
     green: 0,
@@ -37,7 +37,7 @@ function solutionPart1() {
         const [count, color] = colorSet.trim().split(" ");
         game[color as keyof Bag] += parseInt(count);
       });
-      if (game.red <= 12 && game.green <= 14 && game.blue <= 14) {
+      if (game.red <= 12 && game.green <= 13 && game.blue <= 14) {
         tmp.push(true);
       } else {
         tmp.push(false);
@@ -59,7 +59,7 @@ function solutionPart1() {
 }
 
 function solutionPart2() {
-  const linesPart2 = readFile("./day02/part02.txt").split("\n");
+  const linesPart1 = readFile("./day02/part02.txt").split("\n");
 
   interface Bag {
     red: number;
@@ -75,7 +75,7 @@ function solutionPart2() {
 
   let part2 = 0;
 
-  linesPart2.map((line: string) => {
+  linesPart1.map((line: string) => {
     const set = line.split(": ")[1];
 
     game.red = 0;

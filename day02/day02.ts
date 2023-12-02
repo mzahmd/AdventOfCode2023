@@ -111,5 +111,5 @@ function solutionPart2() {
   console.log("part2", part2);
 }
 
-// solutionPart1();
+solutionPart1();
 solutionPart2();

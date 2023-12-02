@@ -5,20 +5,14 @@ function readFile(path: string): string {
 }
 
 function solutionPart1() {
+  const linesPart1 = readFile("./day02/part01.txt").split("\n");
+
   interface Bag {
     red: number;
     green: number;
     blue: number;
   }
-
-  const linesPart1 = readFile("./day02/part01.txt").split("\n");
-
-  const maxCubes = {
-    red: 12,
-    green: 13,
-    blue: 14,
-  };
-
+  
   const game: Bag = {
     red: 0,
     green: 0,
@@ -43,11 +37,7 @@ function solutionPart1() {
         const [count, color] = colorSet.trim().split(" ");
         game[color as keyof Bag] += parseInt(count);
       });
-      if (
-        maxCubes.red >= game.red &&
-        maxCubes.green >= game.green &&
-        maxCubes.blue >= game.blue
-      ) {
+      if (game.red <= 12 && game.green <= 14 && game.blue <= 14) {
         tmp.push(true);
       } else {
         tmp.push(false);
@@ -69,13 +59,13 @@ function solutionPart1() {
 }
 
 function solutionPart2() {
+  const linesPart2 = readFile("./day02/part02.txt").split("\n");
+
   interface Bag {
     red: number;
     green: number;
     blue: number;
   }
-
-  const linesPart1 = readFile("./day02/part02.txt").split("\n");
 
   const game: Bag = {
     red: 0,
@@ -85,7 +75,7 @@ function solutionPart2() {
 
   let part2 = 0;
 
-  linesPart1.map((line: string) => {
+  linesPart2.map((line: string) => {
     const set = line.split(": ")[1];
 
     game.red = 0;
@@ -95,17 +85,14 @@ function solutionPart2() {
     set.split("; ").map((subset) => {
       subset.split(", ").map((colorSet) => {
         const [count, color] = colorSet.trim().split(" ");
-        if (game[color as keyof Bag] < parseInt(count)) {          
+        if (game[color as keyof Bag] < parseInt(count)) {
           game[color as keyof Bag] = parseInt(count);
         }
       });
     });
 
     const setAmount = game.red * game.green * game.blue;
-    part2 += setAmount
-    
-    // console.log(game);
-    
+    part2 += setAmount;
   });
 
   console.log("part2", part2);

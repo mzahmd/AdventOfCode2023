@@ -2,7 +2,6 @@ import fs from "fs";
 
 function readFile(path: string): string {
   return fs.readFileSync(path, "utf-8").toString();
-  // return fs.readFileSync("./day01/part02.txt", "utf-8").toString();
 }
 
 const words = [

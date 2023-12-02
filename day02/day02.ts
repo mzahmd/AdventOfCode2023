@@ -4,13 +4,13 @@ function readFile(path: string): string {
   return fs.readFileSync(path, "utf-8").toString().trim();
 }
 
-interface Bag {
-  red: number;
-  green: number;
-  blue: number;
-}
+function solutionPart1() {
+  interface Bag {
+    red: number;
+    green: number;
+    blue: number;
+  }
 
-function solution() {
   const linesPart1 = readFile("./day02/part01.txt").split("\n");
 
   const maxCubes = {
@@ -29,9 +29,8 @@ function solution() {
 
   let part1 = 0;
 
-  linesPart1.map((line, index) => {
+  linesPart1.map((line: string) => {
     const set = line.split(": ")[1];
-    const id = index + 1;
 
     game.red = 0;
     game.green = 0;
@@ -40,12 +39,10 @@ function solution() {
     const tmp: boolean[] = [];
 
     set.split("; ").map((subset) => {
-      // console.log(subset);
       subset.split(", ").map((colorSet) => {
         const [count, color] = colorSet.trim().split(" ");
         game[color as keyof Bag] += parseInt(count);
       });
-
       if (
         maxCubes.red >= game.red &&
         maxCubes.green >= game.green &&
@@ -55,21 +52,14 @@ function solution() {
       } else {
         tmp.push(false);
       }
-
       game.red = 0;
       game.green = 0;
       game.blue = 0;
-
-      // console.log(game);
     });
     result.push(tmp);
-    // part1 += id;
   });
 
-  console.log(result);
   result.map((boolArr, index) => {
-    // console.log(boolArr);
-
     if (boolArr.every((e) => e === true)) {
       part1 += index + 1;
     }
@@ -78,4 +68,48 @@ function solution() {
   console.log("part1", part1);
 }
 
-solution();
+function solutionPart2() {
+  interface Bag {
+    red: number;
+    green: number;
+    blue: number;
+  }
+
+  const linesPart1 = readFile("./day02/part02.txt").split("\n");
+
+  const game: Bag = {
+    red: 0,
+    green: 0,
+    blue: 0,
+  };
+
+  let part2 = 0;
+
+  linesPart1.map((line: string) => {
+    const set = line.split(": ")[1];
+
+    game.red = 0;
+    game.green = 0;
+    game.blue = 0;
+
+    set.split("; ").map((subset) => {
+      subset.split(", ").map((colorSet) => {
+        const [count, color] = colorSet.trim().split(" ");
+        if (game[color as keyof Bag] < parseInt(count)) {          
+          game[color as keyof Bag] = parseInt(count);
+        }
+      });
+    });
+
+    const setAmount = game.red * game.green * game.blue;
+    part2 += setAmount
+    
+    // console.log(game);
+    
+  });
+
+  console.log("part2", part2);
+}
+
+// solutionPart1();
+solutionPart2();

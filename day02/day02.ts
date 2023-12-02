@@ -5,7 +5,7 @@ function readFile(path: string): string {
 }
 
 function solutionPart1() {
-  const linesPart1 = readFile("./day02/part01.txt").split("\n");
+  const lines = readFile("./day02/part01.txt").split("\n");
 
   interface Bag {
     red: number;
@@ -23,7 +23,7 @@ function solutionPart1() {
 
   let part1 = 0;
 
-  linesPart1.map((line: string) => {
+  lines.map((line) => {
     const set = line.split(": ")[1];
 
     game.red = 0;
@@ -59,7 +59,7 @@ function solutionPart1() {
 }
 
 function solutionPart2() {
-  const linesPart1 = readFile("./day02/part02.txt").split("\n");
+  const lines = readFile("./day02/part02.txt").split("\n");
 
   interface Bag {
     red: number;
@@ -75,7 +75,7 @@ function solutionPart2() {
 
   let part2 = 0;
 
-  linesPart1.map((line: string) => {
+  lines.map((line) => {
     const set = line.split(": ")[1];
 
     game.red = 0;

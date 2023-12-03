@@ -1,4 +1,5 @@
 import fs from "fs";
+
 function readFile(path: string): string {
   return fs.readFileSync(path, "utf-8").toString().trim();
 }

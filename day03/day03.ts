@@ -1,12 +1,11 @@
 import fs from "fs";
-// 537832
 function readFile(path: string): string {
   return fs.readFileSync(path, "utf-8").toString().trim();
 }
 
 function solution() {
-  const lines = readFile("./day03/example.txt").split("\n");
-  // const lines = readFile("./day03/part01.txt").split("\n");
+  // const lines = readFile("./day03/example.txt").split("\n");
+  const lines = readFile("./day03/part01.txt").split("\n");
   let part1 = 0;
 
   function isSymbolAround(lineIndex: number, index: number): boolean {

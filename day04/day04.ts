@@ -13,8 +13,6 @@ function solution() {
 
     const winNumbers: string[] = win.trim().split(" ");
     const myNumbers: string[] = my.trim().split(" ");
-
-    console.log(winNumbers);
     
     let points = 0;
     let firstMatch = false;
@@ -30,8 +28,10 @@ function solution() {
           } else if (!shouldDoubled) {
             points++;
             shouldDoubled = true;
+            break;
           } else {
             points = 2 * points;
+            break;
           }
         }
       }

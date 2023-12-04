@@ -7,6 +7,7 @@ function readFile(path: string): string {
 function solution() {
   // const lines = readFile("./day03/example.txt").split("\n");
   const lines = readFile("./day03/part01.txt").split("\n");
+  
   let part1 = 0;
 
   function isSymbolAround(lineIndex: number, index: number): boolean {
@@ -14,7 +15,7 @@ function solution() {
       lineIndex < 0 ||
       lineIndex >= lines.length ||
       index < 0 ||
-      index >= lines[lineIndex].length
+      index >= lines[lineIndex].trim().length
     ) {
       return false;
     }
@@ -25,7 +26,12 @@ function solution() {
   }
 
   function isSymbolTopBottom(lineIndex: number, index: number): boolean {
-    if (lineIndex < 0 || lineIndex >= lines.length || index < 0 || index >= lines[lineIndex].length) {
+    if (
+      lineIndex < 0 ||
+      lineIndex >= lines.length ||
+      index < 0 ||
+      index >= lines[lineIndex].trim().length
+    ) {
       return false;
     }
 
@@ -55,7 +61,7 @@ function solution() {
         } else {
           // check symbols at the top and bottom
           let counter = 0;
-          for (let j = startIndex-1; j <= endIndex; j++, counter++) {
+          for (let j = startIndex - 1; j <= endIndex; j++, counter++) {
             // check top
             if (isSymbolTopBottom(lineIndex - 1, startIndex - 1 + counter)) {
               numbers.push(parseInt(checkNumber));
@@ -73,8 +79,9 @@ function solution() {
     }
   });
 
+  console.log();
+
   part1 = numbers.reduce((current, result) => current + result, 0);
-  // console.log(numbers);
   console.log(part1);
 }
 

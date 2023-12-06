@@ -40,11 +40,12 @@ function solutionPart1() {
     part1 += points;
   });
 
-  console.log(part1);
+  // console.log(part1);
 }
 
 function solutionPart2() {
-  const lines = readFile("./day04/part02.txt").split("\n");
+  // const lines = readFile("./day04/part02.txt").split("\n");
+  const lines = readFile("./day04/example.txt").split("\n");
 
   let part2 = 0;
   const scratchCards: number[] = [];
@@ -56,39 +57,38 @@ function solutionPart2() {
     const myNumbers: string[] = my.trim().split(" ");
 
     const scratchCard: number[] = [];
-    // save original cards
-    scratchCard.push(cardId + 1);
+
     let matching = 0;
 
     for (const myNumber of myNumbers) {
       for (const winNumber of winNumbers) {
         if (parseInt(myNumber) === parseInt(winNumber)) {
-          // console.log(parseInt(myNumber));
-
           matching++;
           break;
         }
       }
     }
 
-    // console.log('matching', matching);
-
     for (let i = 1; i <= matching; i++) {
-      scratchCard.push(cardId + 1 + i);
+      scratchCard.push(cardId + 1 + i);      
     }
 
+    // console.log(cardId+1, scratchCard);
     scratchCards.push(...scratchCard);
-  });
+    
+    const scratchCardCopy: number[] = [];
 
-  for (let i = 1; i <= lines.length; i++) {
-    let count = 0;
-    for (let j = 1; j <= scratchCards.length; j++) {
-      if (scratchCards[j] === i) {
-        count++;
+    for (let i = 0; i < scratchCards.length; i++) {
+      if (cardId + 1 === scratchCards[i]) {
+        scratchCardCopy.push(...scratchCard);
       }
     }
-    part2 += count;
-  }
+
+    scratchCards.push(...scratchCardCopy);
+
+  });
+
+  part2 += scratchCards.length + lines.length;
 
   console.log(part2);
 }

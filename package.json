@@ -1,14 +1,14 @@
 {
+  "name": "adventofcode2023",
+  "version": "1.0.0",
+  "description": "My solution of Advent Of Code using typescript",
+  "main": "index.js",
   "devDependencies": {
     "typescript": "^5.3.2"
   },
   "dependencies": {
     "@types/node": "^20.10.1"
   },
-  "name": "adventofcode2023",
-  "version": "1.0.0",
-  "description": "My solution of Advent Of Code using typescript",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

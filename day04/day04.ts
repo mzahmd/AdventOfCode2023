@@ -44,8 +44,8 @@ function solutionPart1() {
 }
 
 function solutionPart2() {
-  // const lines = readFile("./day04/part02.txt").split("\n");
-  const lines = readFile("./day04/example.txt").split("\n");
+  const lines = readFile("./day04/part02.txt").split("\n");
+  // const lines = readFile("./day04/example.txt").split("\n");
 
   let part2 = 0;
   const scratchCards: number[] = [];
@@ -55,8 +55,6 @@ function solutionPart2() {
 
     const winNumbers: string[] = win.trim().split(" ");
     const myNumbers: string[] = my.trim().split(" ");
-
-    const scratchCard: number[] = [];
 
     let matching = 0;
 
@@ -68,30 +66,27 @@ function solutionPart2() {
         }
       }
     }
-
-    for (let i = 1; i <= matching; i++) {
-      scratchCard.push(cardId + 1 + i);      
-    }
-
-    // console.log(cardId+1, scratchCard);
-    scratchCards.push(...scratchCard);
-    
-    const scratchCardCopy: number[] = [];
-
-    for (let i = 0; i < scratchCards.length; i++) {
-      if (cardId + 1 === scratchCards[i]) {
-        scratchCardCopy.push(...scratchCard);
-      }
-    }
-
-    scratchCards.push(...scratchCardCopy);
-
+    scratchCards.push(matching)
   });
 
-  part2 += scratchCards.length + lines.length;
+  // console.log(scratchCards)
 
-  console.log(part2);
+  for (let i = 0; i < scratchCards.length; i++) {
+    part2++;
+    countCards(i)
+  }
+
+  function countCards(index: number) {
+    for (let i = index + 1; i <= scratchCards[index] + index; i++) {
+      part2++;
+      countCards(i)
+    }
+  }
+
+  console.log("part2", part2);
+
 }
+
 
 solutionPart1();
 solutionPart2();
